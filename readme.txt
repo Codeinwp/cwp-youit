@@ -1,26 +1,21 @@
-= YouIT =
+= CWP-YouIT =
 Contributors:		
-Codeinwp 
+themeisle.com
 
-Tags: black, blue, white, gray, one-column, three-columns, right-sidebar, custom-menu, theme-options, translation-ready
+Tags: gray, black, two-columns, right-sidebar, flexible-width, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, sticky-post
 Requires at least:	3.3.0
 
 Tested up to:		3.5.2 
 
 If you want to change the default logo, the size is : 231px*99 
 
-YouIT
+CWP-YouIT
 
 == Description ==
-CWP Robi is a easily customizable WordPress Theme with numerous theme options and an elegant design.  
+YouIT is a easily customizable WordPress Theme with numerous theme options and an elegant design.  
 = License =
 
 Unless otherwise specified, all the theme files, scripts and images are licensed under GNU General Public Licemse.
 
 The exceptions to this license are as follows: 
- 
-* The theme is derived from TwentyTwelve - License: GNU General Public License v2 or later
 * Open Sans font is licensed under Apache License, Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.html , http://www.google.com/fonts/specimen/Open+Sans
-* Nobile Font: SIL Open Font License, Version 1.1
-License URI : http://scripts.sil.org/OFL
-This Font Software is licensed under the SIL Open Font License, Version 1.1.

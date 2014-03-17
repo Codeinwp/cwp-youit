@@ -1,13 +1,13 @@
 /*
 Theme Name: CWP-YouIT
 Theme URI: http://themes.codeinwp.com/themes/youit-gaming-theme/
-Author: Codeinwp
-Author URI: http://www.codeinwp.com
+Author: themeisle.com
+Author URI: themeisle.com
 Description: YouIT is a wordpress theme created for gaming or IT news websites which wants a modern look.
 Version: 1.0.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: gray, black, two-columns, right-sidebar, flexible-width, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, sticky-post, theme-options
+Tags: gray, black, two-columns, right-sidebar, flexible-width, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, sticky-post
 */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
@@ -19,8 +19,19 @@ Tags: gray, black, two-columns, right-sidebar, flexible-width, custom-background
 	font-family: 'Nobile';
 	src: url('fonts/Nobile-Medium.ttf');
 }
+
+.clearfix {
+	clear:both;
+}
+
+body {
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
+
 .entry-content {
 	
+	-ms-word-wrap: break-word;
 	word-wrap: break-word;
 	color: #3E485E;
 	font-size:10pt;
@@ -105,7 +116,6 @@ Tags: gray, black, two-columns, right-sidebar, flexible-width, custom-background
 .sticky {
 }
 .nav-single {
-	height:70px;
 	border-bottom: 1px solid #ccc;
 	padding: 15px 0;
 	margin: 10px 0 40px 0;
@@ -292,7 +302,13 @@ header .more{
 	box-shadow: 0 2px 3px #bbbbbb;
 	float: left;
 }
-.two-columns article p {
+.full-width article{
+	width: 100%;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px #bbbbbb;
+	margin-bottom:20px;
+}
+.two-columns article p, .full-width article p {
 	text-align:justify;
 }
 .comments-area a, .comments-area a:visited{
@@ -328,23 +344,28 @@ header .more{
 	height: 176px;
 	border-radius: 3px;
 }
-.two-columns article span{
+.full-width img{
+	width: 94%;
+	height: 176px;
+	border-radius: 3px;
+}
+.two-columns article span, .full-width article span{
 	color: #000000;
 	font-size: 14px;
 }
-.two-columns article p{
+.two-columns article p, .full-width article p{
 	color: #484547;
 	font-size: 12px;
 	font-weight: 300;
 }
-.two-columns article a{
+.two-columns article a, .full-width article a{
 	color: #ffffff;
 	font-size: 12px;
 	font-weight: 300;
 	text-decoration: none;
 	text-align: center;
 }
-.two-columns article h3{
+.two-columns article h3, .full-width article h3{
 	color: #000000;
 	font-size: 14px;
 }
@@ -930,11 +951,11 @@ header .more.nodesc{
 	6.2 Articles
 ==============================
 */
-.two-columns{
+.two-columns, .full-width{
 	margin-bottom: 30px;
 	float: left;
 }
-.two-columns article{
+.two-columns article {
 	width: 300px;
 	margin-right: 40px;
 	border-radius: 3px;
@@ -948,8 +969,20 @@ header .more.nodesc{
 	-ms-transition: all 0.3s;
 	transition: all 0.3s;
 }
+.full-width article {
+	width: 100%;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 2px 3px #bbb;
+	box-shadow: 0 2px 3px #bbb;
+	background: #fff;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	transition: all 0.3s;
+}
 
-.two-columns article:hover {
+.two-columns article:hover, .full-width article:hover  {
 	-webkit-box-shadow: 0 1px 9px #bbb;
 	box-shadow: 0 1px 9px #bbb;
 }
@@ -962,14 +995,20 @@ header .more.nodesc{
 	height: 175px;
 	border-radius: 3px;
 }
-.two-columns article h3{
+.full-width img{
+	padding:20px;
+	width: 94%;
+	height: 175px;
+	border-radius: 3px;
+}
+.two-columns article h3, .full-width article h3{
 	padding: 15px 20px 0 20px;
 }
-.two-columns article p{
+.two-columns article p, .full-width article p{
 	padding: 0 20px;
 	margin-top: 5px;
 }
-.two-columns article a{
+.two-columns article a, .full-width article a{
 	background: url('images/read-more-button.png') no-repeat top center;
 	width: 139px;
 	height: 20px;
@@ -977,7 +1016,7 @@ header .more.nodesc{
 	margin: 15px auto 0 auto;
 }
 
-.two-columns article a:hover {
+.two-columns article a:hover, .full-width article a:hover {
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 	filter: alpha(opacity=90);
 	opacity: 0.9;
@@ -1074,7 +1113,6 @@ header .more.nodesc{
     font-size: 24px;
     font-weight: 700;
     border-bottom: 1px solid #ccc;
-	overflow:hidden;
 	line-height:120%;
 	padding-bottom:15px;
 }
@@ -1379,4 +1417,7 @@ img.wp-smiley,
 	background: #fff;
 	border-radius: 4px;
 	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+}
+#quick-search #header-submit{
+	width:100%;
 }

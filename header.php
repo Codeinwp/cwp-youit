@@ -13,47 +13,39 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-  <div class="header">
-    <div class="container">
-	<?php $options = cwp_get_theme_options(); 
-		  $cats = array_map('intval', explode(", ", $options['searchcat']));
-		  if(isset($_GET['cat'])) {
-			$catToSearch = $_GET['cat'];
-		  }
-		  else {
-			$catToSearch = false;
-		  }
-		  ?>
-      <div class="logo left">
-        <a  href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home" ><img src="<?php echo $options['logo']; ?>" alt="YouIT"></a>
-      </div>
-      <div class="span7 search">
-	  <form action='<?php echo esc_url( home_url( '/' ) ); ?>' method='GET'>
-        <div class="search-location">
-          <span><?php _e('Search in:','cwp'); ?></span>
-		  <input type="radio" name="cat" value="all" id='catall' <?php if(!$catToSearch) {?> CHECKED <?php } ?> /><label for="catall"><?php _e('All Categories', 'cwp'); ?></label>
-		  <?php foreach($cats as $cat) {
-			$myCat = get_category($cat);
-		  ?>
-			<input type="radio" id="s<?php echo $myCat->cat_ID; ?>" name="cat" value="<?php echo $myCat->cat_ID; ?>" <?php  if($catToSearch == $myCat->cat_ID) { ?> CHECKED <?php  } ?>/><label for="s<?php echo $myCat->cat_ID; ?>"><?php echo $myCat->cat_name; ?></label>
-		  <?php } ?>
-        </div>
-        <div class="span6 search-box">
-          <span class="left"></span>
-          <input <?php if(isset($_GET['s'])) { ?> value='<?php echo esc_attr($_GET['s']); ?>' <?php } ?> name='s' type="text"/>
-          <input type="submit" value=""/>
-          <span class="right"></span>
-      </div>
-	  </form>
-      </div>
-    </div>
-  </div>
+	<?php if(get_header_image()): ?>
+	<div class="container">
+		<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
+	</div>	
+	<?php endif; ?>
+	<div class="header">
+		<div class="container">
+			<?php
+			if(get_theme_mod('logo')):
+				echo ' <div class="logo left">';
+					echo '<a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo( 'name', 'display' ) ).'" rel="home"><img src="'.get_theme_mod('footer_logo').'" alt="YouIT"></a>';
+				echo '</div>';
+			endif;
+			?>
+			<div class="span7 search">
+			<?php 
+				add_filter( 'get_search_form', 'cwp_search_form_header' );
+				get_search_form();
+				remove_filter( 'get_search_form', 'cwp_search_form_header' ); 
+			?>
+			</div>
+		</div>
+	</div>
   <div class="navigation">
     <div class="container">
         <nav class="navbar">
           <ul class="nav">
-            <li><a  href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo  get_template_directory_uri(); ?>/images/nav-home.png" alt=""/></a></li>
-			         <?php wp_nav_menu( array( 'container'	=>	false, 'theme_location' => 'primary', 'walker'=> new cwp_Walker_Nav_menu(), 'fallback_cb'=> false,  'menu_class' => '', 'depth'=> 2,  'items_wrap' => '%3$s') ); ?>
+            <li>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+					<img src="<?php echo  get_template_directory_uri(); ?>/images/nav-home.png" alt=""/>
+				</a>
+			</li>
+			<?php wp_nav_menu( array( 'container'	=>	false, 'theme_location' => 'primary', 'walker'=> new cwp_Walker_Nav_menu(), 'fallback_cb'=> false,  'menu_class' => '', 'depth'=> 2,  'items_wrap' => '%3$s') ); ?>
           </ul>
         </nav>
     </div>
