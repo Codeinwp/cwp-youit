@@ -2,17 +2,14 @@
 Contributors:		
 themeisle.com
 
-Tags: gray, black, two-columns, right-sidebar, flexible-width, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, post-formats, sticky-post
+Tags: gray, black, one-column, two-columns, right-sidebar, fixed-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, threaded-comments, post-formats, sticky-post
 Requires at least:	3.3.0
 
-Tested up to:		3.5.2 
-
-If you want to change the default logo, the size is : 231px*99 
-
+Tested up to:		3.8.1
 CWP-YouIT
 
 == Description ==
-YouIT is a easily customizable WordPress Theme with numerous theme options and an elegant design.  
+YouIT is a wordpress theme created for gaming or IT news websites which wants a modern look.
 = License =
 
 Unless otherwise specified, all the theme files, scripts and images are licensed under GNU General Public Licemse.
