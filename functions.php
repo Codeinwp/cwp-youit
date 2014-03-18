@@ -512,11 +512,11 @@ function cwp_search_form_header( $form ) {
 	$form = '<form action="'.esc_url( home_url( '/' ) ).'" method="GET">';
 		$form .= '<div class="search-location">';
 			$form .= '<span>'.__('Search in:','cwp').'</span>';
-			$form .= '<input type="radio" name="cat" value="all" id="catall" '.checked( $tmpc, "1", $echo ).' />';
+			$form .= '<input type="radio" name="cat" value="all" id="catall" '.checked( $tmpc, "1", false ).' />';
 			$form .= '<label for="catall">'.__('All Categories', 'cwp').'</label>';
 			
 			foreach($cats as $cat) { 
-				$form .= '<input type="radio" id="s'.$cat->cat_ID.'" name="cat" value="'.$cat->cat_ID.'" '.checked( $catToSearch, $cat->cat_ID, $echo ).' />';
+				$form .= '<input type="radio" id="s'.$cat->cat_ID.'" name="cat" value="'.$cat->cat_ID.'" '.checked( $catToSearch, $cat->cat_ID, false ).' />';
 				$form .= '<label for="s'.$cat->cat_ID.'">'.$cat->name.'</label>';
 			}
 		$form .= '</div>';

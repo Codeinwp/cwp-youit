@@ -105,6 +105,12 @@
 					if(get_theme_mod('cat1_slug')):
 					    $cat1 = get_category(get_theme_mod('cat1_slug'));
 						$description1 = $cat1->description;
+					else:
+						$categories = get_categories(array('number' => 1));
+						if(isset($categories) && !empty($categories) && isset($categories[0]) && isset($categories[0]->cat_ID)):
+							$cat1 = get_category($categories[0]->cat_ID);
+							$description1 = $cat1->description;
+						endif;					
 					endif;	
 				?>
 				<header class="section-title news">
@@ -137,6 +143,12 @@
 					if(get_theme_mod('cat2_slug')):
 					    $cat2 = get_category(get_theme_mod('cat2_slug'));
 						$description2 = $cat2->description;
+					else:
+						$categories = get_categories(array('number' => 1));
+						if(isset($categories) && !empty($categories) && isset($categories[0]) && isset($categories[0]->cat_ID)):
+							$cat2 = get_category($categories[0]->cat_ID);
+							$description2 = $cat2->description;
+						endif;					
 					endif;	
 				?>
 
@@ -170,7 +182,13 @@
 					if(get_theme_mod('cat3_slug')):
 					    $cat3 = get_category(get_theme_mod('cat3_slug'));
 						$description3 = $cat3->description;
-					endif;	
+					else:
+						$categories = get_categories(array('number' => 1));
+						if(isset($categories) && !empty($categories) && isset($categories[0]) && isset($categories[0]->cat_ID)):
+							$cat3 = get_category($categories[0]->cat_ID);
+							$description3 = $cat3->description;
+						endif;					
+					endif;						
 				?>
 				<header class="section-title articles">
 					<?php 

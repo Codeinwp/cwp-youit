@@ -47,7 +47,7 @@ function cwp_customize_register( $wp_customize ) {
     	'priority'    => 102,
 		'description' => __('Enter a text for the top 5 section in the right side','cwp')
 	) );
-	$wp_customize->add_setting( 'top_5_text', array('default' => 'Top 5 best <span>games</span>') );
+	$wp_customize->add_setting( 'top_5_text', array('default' => 'Top 5 best <span>games</span>', 'sanitize_callback' => 'top_5_text_sanitization') );
 	$wp_customize->add_control( 'top_5_text', array(
 	    'label'    => __( 'Top 5 text', 'cwp' ),
 	    'section'  => 'cwp_top5_section',
@@ -66,7 +66,7 @@ function cwp_customize_register( $wp_customize ) {
 	$i = 1;
 	foreach($categories as $categ):
 		$wp_customize->add_setting($categ->slug, array(
-			'capability' => 'edit_theme_options'
+			'capability' => 'edit_theme_options', 'sanitize_callback' => 'searchcat_sanitization'
 		));
 		$wp_customize->add_control($categ->slug, array(
 			'settings' => $categ->slug,
@@ -82,7 +82,7 @@ function cwp_customize_register( $wp_customize ) {
 	$cat_slugs = array();
 	$categories = get_categories();
 	foreach($categories as $categ):
-		array_push($cat_slugs, $categ->slug);
+		$cat_slugs[$categ->cat_ID] = $categ->slug;
 	endforeach;
 	
 	$wp_customize->add_section( 'cwp_field_cat_section' , array(
@@ -90,9 +90,7 @@ function cwp_customize_register( $wp_customize ) {
     	'priority'    => 104,
 		'description' => __('Choose category for the first section','cwp')
 	) );
-	$wp_customize->add_setting( 'cat1_slug', array(
-        'default' => 'uncategorized',
-    ));
+	$wp_customize->add_setting( 'cat1_slug', array('sanitize_callback' => 'cat_slug_sanitization') );
 	$wp_customize->add_control(
 		'cat1_slug',
 		array(
@@ -110,9 +108,7 @@ function cwp_customize_register( $wp_customize ) {
     	'priority'    => 105,
 		'description' => __('Choose category for the second section','cwp')
 	) );
-	$wp_customize->add_setting( 'cat2_slug', array(
-        'default' => 'uncategorized',
-    ));
+	$wp_customize->add_setting( 'cat2_slug', array('sanitize_callback' => 'cat_slug_sanitization'));
 	$wp_customize->add_control(
 		'cat2_slug',
 		array(
@@ -130,9 +126,7 @@ function cwp_customize_register( $wp_customize ) {
     	'priority'    => 106,
 		'description' => __('Choose category for the third section','cwp')
 	) );
-	$wp_customize->add_setting( 'cat3_slug', array(
-        'default' => 'uncategorized',
-    ));
+	$wp_customize->add_setting( 'cat3_slug', array('sanitize_callback' => 'cat_slug_sanitization'));
 	$wp_customize->add_control(
 		'cat3_slug',
 		array(
@@ -142,8 +136,35 @@ function cwp_customize_register( $wp_customize ) {
 			'choices' => $cat_slugs,
 		)
 	);
+	
 }
 add_action( 'customize_register', 'cwp_customize_register' );
+
+function top_5_text_sanitization( $input ) {
+    return wp_kses_post( force_balance_tags( $input ) );
+}
+
+function searchcat_sanitization( $input ) {
+    if ( $input == 1 ) {
+        return 1;
+    } else {
+        return '';
+    }
+}
+
+function cat_slug_sanitization( $input ) {
+    $cat_slugs = array();
+	$categories = get_categories();
+	foreach($categories as $categ):
+		$cat_slugs[$categ->cat_ID] = $categ->slug;
+	endforeach;
+	
+    if ( array_key_exists( $input, $cat_slugs ) ) {
+        return $input;
+    } else {
+        return '';
+    }
+}
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
