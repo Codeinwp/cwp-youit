@@ -1089,10 +1089,17 @@ header .more.nodesc{
 	line-height: 16px;
 }
 .newsletter input[type=submit]{
-	background: url('images/newsletter-button.png') no-repeat top center;
 	width: 246px;
 	height: 33px;
 	cursor: pointer;
+	background-image: url('images/buton_03.png');
+	border: 1px solid #ba350e;
+	border-bottom: 1px solid #ba350e;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #ffffff;
+	
 }
 .all-about a img{
 	float: left;
@@ -1420,4 +1427,19 @@ img.wp-smiley,
 }
 #quick-search #header-submit{
 	width:100%;
+}
+.main-title {
+	margin: 24px 0 0 12px;
+}
+.main-title a, .main-title-footer a {
+	color:#fff;
+}
+.main-title-footer {
+	margin:0px;
+}
+.main-title-footer h1 {
+	font-size:15px;
+}
+.main-title-footer h2 {
+	font-size:13px;
 }
