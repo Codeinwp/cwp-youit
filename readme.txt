@@ -1,6 +1,6 @@
 = CWP-YouIT =
 Contributors:		
-themeisle.com
+codeinwp
 
 Tags: gray, black, one-column, two-columns, right-sidebar, fixed-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, threaded-comments, post-formats, sticky-post
 Requires at least:	3.3.0
