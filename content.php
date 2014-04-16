@@ -1,12 +1,10 @@
-
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 		<div class="featured-post">
 			<?php _e( 'Featured post', 'cwp' ); ?>
 		</div>
 		<?php endif; ?>
 		<header class="entry-header">
-			
 			<?php if ( is_single() ) : ?>
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 			<?php else : ?>
@@ -14,6 +12,11 @@
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'cwp' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h1>
 			<?php endif; // is_single() ?>
+			<?php
+				if ( has_post_thumbnail() ):
+					the_post_thumbnail();
+				endif;
+			?>
 			<?php if ( comments_open() ) : ?>
 				<div class="comments-link">
 					<?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'cwp' ) . '</span>', __( '1 Reply', 'cwp' ), __( '% Replies', 'cwp' ) ); ?>
@@ -50,4 +53,4 @@
 				</div><!-- .author-info -->
 			<?php endif; ?>
 		</footer><!-- .entry-meta -->
-	</article><!-- #post -->
+</article><!-- #post -->

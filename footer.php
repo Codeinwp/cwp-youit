@@ -1,8 +1,4 @@
-<?php 
-	///Initialize options
-	$options = cwp_get_theme_options();
 
-?>
    </div>
     <div class="clear"></div>
   <footer>
@@ -19,9 +15,19 @@
     </div>
     <div class="copyright">
       <div class="copyright-wrapper">
-        <div class="logo">
-          <a href="" title=""><img src="<?php echo $options['footer_logo']; ?>" alt=""></a>
-        </div>
+		<?php
+			if(get_theme_mod('footer_logo')):
+				echo ' <div class="logo">';
+					echo '<a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo( 'name', 'display' ) ).'"><img src="'.get_theme_mod('footer_logo').'" alt="'.esc_attr( get_bloginfo( 'name', 'display' ) ).'"></a>';
+				echo '</div>';
+			else:
+				echo ' <div class="span3 main-title-footer">';
+					echo '<h1><a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo( 'name', 'display' ) ).'" rel="home">'.get_bloginfo( 'name' ).'</a></h1>';
+					echo '<h2><a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo( 'name', 'display' ) ).'" rel="home">'.get_bloginfo( 'description' ).'</a></h2>';
+				echo '</div>';
+			endif;
+		?>
+       
         <div class="links">
           <ul>
 			<?php wp_nav_menu( array( 'container'	=>	false, 'fallback_cb'=>false, 'depth' =>1, 'theme_location' => 'footer',  'menu_class' => 'nav-menu',  'items_wrap' => '%3$s') ); ?>

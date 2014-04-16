@@ -9,12 +9,10 @@ function cwp_wp_nav_menu_args( $args = '' ) {
 add_filter( 'wp_nav_menu_args', 'cwp_wp_nav_menu_args' );
 function cwp_setup() {
 	load_theme_textdomain( 'cwp', get_template_directory() . '/languages' );
-	// This theme styles the visual editor with editor-style.css to match the theme style.
-	add_editor_style();
+	
 	// Adds RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
 	
-	require( get_template_directory() . '/inc/theme-options.php' );
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu', 'cwp' ) );
 	register_nav_menu( 'footer', __( 'Footer Menu', 'cwp' ) );
@@ -34,6 +32,15 @@ function cwp_setup() {
 	add_image_size( 'fv-thumb', 180, 329, true );
 	add_image_size( 'big-thumb', 300, 176, true );
 	add_image_size( 'small-thumb', 134, 100, true );
+	
+	
+	$args = array(
+		'width'         => 960,
+		'height'        => 60,
+		'default-image' => '',
+		'uploads'       => true,
+	);
+	add_theme_support( 'custom-header', $args );
 }
 add_action( 'after_setup_theme', 'cwp_setup' );
 function cwp_do_media() {
@@ -42,10 +49,15 @@ function cwp_do_media() {
 }
 add_action('admin_enqueue_scripts', 'cwp_do_media');
 /**
+* Customizer additions.
+*/
+require get_template_directory() . '/inc/customizer.php';
+
+/**
  * Adds support for a custom header image.
  */ 
  
-    add_action( 'pre_get_posts', 'cwp_search_by_cat' );
+add_action( 'pre_get_posts', 'cwp_search_by_cat' );
 function cwp_search_by_cat()
 	{
 		if ( is_search())
@@ -55,6 +67,7 @@ function cwp_search_by_cat()
 				add_query_arg( 'cat', $cat );
 			}
 	}
+
 	
 class cwp_Walker_Category_Checklist extends Walker {
 	var $tree_type = 'category';
@@ -447,28 +460,82 @@ function cwp_entry_meta() {
 		$author
 	);
 }
- 
+
+/* excerpt limit */ 
+add_filter( 'excerpt_length', 'cwp_excerpt_length', 999 ); 
 function cwp_excerpt_length( $length ) {
 	return 30;
 }
-add_filter( 'excerpt_length', 'cwp_excerpt_length', 999 );
+
+/* default title */
 add_filter( 'the_title', 'cwp_no_title');
 function cwp_no_title ($title) {
-  if( $title == "" ){
+	if( $title == "" ){
 		$title = "(No title)";
-  }
-  return $title;
+	}
+	return $title;
 }
-/**
- * Add postMessage support for site title and description for the Theme Customizer.
- *
- * @since cwp 1.0
- *
- * @param WP_Customize_Manager $wp_customize Theme Customizer object.
- * @return void
- */
-function cwp_customize_register( $wp_customize ) {
-	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+
+function custom_search_form( $form ) {
+    $form = '<form method="get" id="quick-search" action="'.esc_url( home_url( '/' ) ).'" >';
+
+    $form .= '<input type="text" value="' . get_search_query() . '" name="s" id="s" />';
+    $form .= '<input type="submit" value="Search" id="header-submit" />';
+
+    $form .= '</form>';
+    return $form;
 }
- 
+add_filter( 'get_search_form', 'custom_search_form' );
+
+function cwp_search_form_header( $form ) {
+	$cats = array();
+	$categories = get_categories();
+	foreach($categories as $categ):
+		if(get_theme_mod($categ->slug)):
+			array_push($cats, $categ);
+		endif;
+	endforeach;	
+
+	if(isset($_GET['cat'])) {
+		$catToSearch = $_GET['cat'];
+	}
+	else {
+		$catToSearch = false;
+	}
+	if(!$catToSearch) {
+		$tmpc = "1";
+	}
+	else {
+		$tmpc = "0";
+	}
+	
+	$form = '<form action="'.esc_url( home_url( '/' ) ).'" method="GET">';
+		$form .= '<div class="search-location">';
+			$form .= '<span>'.__('Search in:','cwp').'</span>';
+			$form .= '<input type="radio" name="cat" value="all" id="catall" '.checked( $tmpc, "1", false ).' />';
+			$form .= '<label for="catall">'.__('All Categories', 'cwp').'</label>';
+			
+			foreach($cats as $cat) { 
+				$form .= '<input type="radio" id="s'.$cat->cat_ID.'" name="cat" value="'.$cat->cat_ID.'" '.checked( $catToSearch, $cat->cat_ID, false ).' />';
+				$form .= '<label for="s'.$cat->cat_ID.'">'.$cat->name.'</label>';
+			}
+		$form .= '</div>';
+		$form .= '<div class="span6 search-box">';
+			$form .= '<span class="left"></span>';
+			if(isset($_GET['s'])){
+				$tmp_val = esc_attr($_GET['s']);
+			}
+			else {
+				$tmp_val = "";
+			}
+			$form .= '<input value="'.$tmp_val.'" name="s" type="text"/>';
+				$form .= '<input type="submit" value=""/>';
+				$form .= '<span class="right"></span>';
+		$form .= '</div>';
+	$form .= '</form>';
+	return $form;
+}
+function cwp_add_editor_styles() {
+    add_editor_style( '/css/custom-editor-style.css' );
+}
+add_action( 'init', 'cwp_add_editor_styles' );

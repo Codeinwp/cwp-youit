@@ -843,10 +843,16 @@ header .more{
 	line-height: 16px;
 }
 .newsletter input[type=submit]{
-	background: url('../images/newsletter-button.png') no-repeat top center;
 	width: 246px;
 	height: 33px;
 	cursor: pointer;
+	background-image: url('images/buton_03.png');
+	border: 1px solid #ba350e;
+	border-bottom: 1px solid #ba350e;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #ffffff;
 }
 .all-about a img{
 	float: left;
