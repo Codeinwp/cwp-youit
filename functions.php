@@ -213,7 +213,8 @@ function cwp_scripts_styles() {
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
 	 */
-	 wp_enqueue_script('jquery');
+	wp_enqueue_script('jquery');
+	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
 	/*
@@ -414,7 +415,8 @@ function cwp_comment( $comment, $args, $depth ) {
 				<?php edit_comment_link( __( 'Edit', 'cwp' ), '<p class="edit-link">', '</p>' ); ?>
 			</section><!-- .comment-content -->
 			<div class="reply">
-				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'cwp' ), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+				
+				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'cwp' ), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => 10 ) ) ); ?>
 			</div><!-- .reply -->
 		</article><!-- #comment-## -->
 	<?php

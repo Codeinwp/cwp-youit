@@ -41,7 +41,7 @@
 			</div>
 		</div>
 	</div>
-  <div class="navigation">
+  <div class="navigation navigation-top">
     <div class="container">
         <nav class="navbar">
           <ul class="nav">
