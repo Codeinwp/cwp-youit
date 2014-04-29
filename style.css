@@ -1466,6 +1466,15 @@ img.wp-smiley,
 }
 .main-title {
 	margin: 24px 0 0 12px;
+	width: 335px;
+	height: 99px;
+	overflow:hidden;
+}
+.main-title h1 {
+	font-size:2em;
+}
+.main-title h2 {
+	font-size:1em;
 }
 .main-title a, .main-title-footer a {
 	color:#fff;
