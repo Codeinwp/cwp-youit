@@ -7,6 +7,7 @@
 					the_post(); 
 					get_template_part( 'content', '2' ); 
 				endwhile;
+				cwp_content_nav( 'nav-below' );
 			endif;
 		?>
 	</section>			

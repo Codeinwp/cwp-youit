@@ -4,7 +4,7 @@ Theme URI: http://themes.codeinwp.com/themes/youit-gaming-theme/
 Author: codeinwp
 Author URI: http://www.codeinwp.com
 Description: YouIT is a wordpress theme created for gaming or IT news websites which wants a modern look.
-Version: 1.0.8
+Version: 1.0.9
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: gray, black, one-column, two-columns, right-sidebar, fixed-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, threaded-comments, post-formats, sticky-post
@@ -35,20 +35,46 @@ body {
 	word-wrap: break-word;
 	color: #3E485E;
 	font-size:10pt;
-	text-align:justify;
+
+	
 }
 
+h1 {
+	font-size: 36px;
+}
+h2 {
+	font-size: 30px;
+}
+h3 {
+	font-size: 24px;
+}
+h4 {
+	font-size: 18px;
+}
+h5 {
+	font-size: 14px;
+}
+h6 {
+	font-size: 12px;
+}
+
+table {
+	width:100%;
+	background: #fff;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+table th {
+	background: #eee;
+	font-weight: bold;
+}
+table td, table th {
+	padding: 8px;
+	border: 1px solid #ddd;
+	text-align: left;
+}
 /* Text style */
 
-.entry-content tr {
-	border-bottom: 1px solid #ccc;
-	padding: 5px 0;
-	display: block;
-}
-
-.entry-content td {
-	padding: 0 8px;
-}
 
 .entry-content blockquote {
 	font-style: italic;
@@ -84,7 +110,7 @@ body {
 
 .entry-content code {
 	background: #fff;
-	padding: 15px;
+	padding: 4px;
 	border-radius: 4px;
 }
 
@@ -315,6 +341,9 @@ header .more{
 	color:#000000;
 	text-decoration:underline;
 }
+.comments-title span {
+	line-height:normal;
+}
 .three-columns {
     
     float:left;
@@ -541,6 +570,7 @@ img, input{
 .header{
 	background: url('images/header-background.png') repeat-x;
 	height: 150px;
+	min-width:960px;
 }
 /*
 ==============================
@@ -672,9 +702,15 @@ input[type=submit] {
 	4.0 Navigation
 ==============================
 */
+.nav {
+	overflow:hidden;
+}
 .navigation{
 	background: url('images/nav-background.png') repeat-x;
 	margin-top: -1px;
+}
+.navigation-top {
+	min-width:960px;
 }
 .navbar{
 	margin-left: 10px;
@@ -904,10 +940,7 @@ input[type=submit] {
 	6.1 Sections
 ==============================
 */
-section h2, section h3{
-	padding: 0;
-	margin: 0;
-}
+
 .section-title{
 	width: 100%;
 	height: 41px;
@@ -1170,6 +1203,7 @@ footer{
 }
 .entry-meta {
 	background:none;
+	clear:both;
 }
 /*
 ==============================
@@ -1305,6 +1339,7 @@ footer{
 /* Images */
 .entry-content img {
 	max-width:100%;
+	height:auto;
 }
 .alignleft {
 	float: left;
@@ -1332,6 +1367,7 @@ img.wp-post-image {
 .wp-caption {
 	max-width: 100%; /* Keep wide captions from overflowing their container. */
 	padding: 4px;
+	border:1px solid #d7d7d7;
 }
 .wp-caption .wp-caption-text,
 .gallery-caption,
@@ -1430,6 +1466,15 @@ img.wp-smiley,
 }
 .main-title {
 	margin: 24px 0 0 12px;
+	width: 335px;
+	height: 99px;
+	overflow:hidden;
+}
+.main-title h1 {
+	font-size:2em;
+}
+.main-title h2 {
+	font-size:1em;
 }
 .main-title a, .main-title-footer a {
 	color:#fff;
