@@ -59,7 +59,7 @@ function cwp_customize_register( $wp_customize ) {
 	$wp_customize->add_section( 'cwp_searchcat_section' , array(
     	'title'       => __( 'Search in cats (slugs) separated by commas', 'cwp' ),
     	'priority'    => 103,
-		'description' => __('Enter a text for the top 5 section in the right side','cwp')
+		'description' => __('Choose the categories to search','cwp')
 	) );
 	
 	$categories = get_categories();
