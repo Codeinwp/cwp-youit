@@ -9,7 +9,7 @@ Tested up to:		3.8.1
 CWP-YouIT
 
 == Description ==
-YouIT is a wordpress theme created for gaming or IT news websites which wants a modern look.
+CWP-YouIT is a wordpress theme created for gaming or IT news websites which wants a modern look.
 = License =
 
 Unless otherwise specified, all the theme files, scripts and images are licensed under GNU General Public License v2.
