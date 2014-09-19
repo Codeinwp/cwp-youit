@@ -4,9 +4,9 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php 
 				get_template_part( 'content', get_post_format() ); 
-				$prev_post = get_adjacent_post(false, '', true);
-				$next_post = get_adjacent_post(false, '', false);
-				if(!empty($next_post) || !empty($prev_post)) {
+				$cwp_youit_prev_post = get_adjacent_post(false, '', true);
+				$cwp_youit_next_post = get_adjacent_post(false, '', false);
+				if(!empty($cwp_youit_next_post) || !empty($cwp_youit_prev_post)) {
 				?>				
 				<nav class="nav-single">
 					<h3 class="assistive-text"><?php _e( 'Post navigation', 'cwp' ); ?></h3>

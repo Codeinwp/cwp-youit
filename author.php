@@ -32,25 +32,25 @@ get_header(); ?>
 				</div><!-- .author-description	-->
 			</div><!-- .author-info -->
 			<?php endif; 
-			$i = 1;
+			$cwp_youit_i = 1;
 			while ( have_posts() ) : the_post();
 				/* Include the post format-specific template for the content. If you want to
 				 * this in a child theme then include a file called called content-___.php
 				 * (where ___ is the post format) and that will be used instead.
 				 */
-				 if(is_int(($i-1)/2) || ($i == 1)) {
+				 if(is_int(($cwp_youit_i-1)/2) || ($cwp_youit_i == 1)) {
 					?><section class='two-columns'><?php
 				 }
 				get_template_part( 'content', '2');
 				
-				if(is_int($i/2) ) {
+				if(is_int($cwp_youit_i/2) ) {
 				?></section> <?php
 				
 				}
-				$i++;
+				$cwp_youit_i++;
 			endwhile;
 			
-			if(!is_int(($i-1)/2)) {
+			if(!is_int(($cwp_youit_i-1)/2)) {
 				?></section><?php
 			}
 			 cwp_content_nav( 'nav-below' ); ?>

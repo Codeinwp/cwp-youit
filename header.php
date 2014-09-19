@@ -16,7 +16,7 @@
 	<?php if(get_header_image()): ?>
 	<div class="container">
 		<img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="" />
-	</div>	
+	</div>
 	<?php endif; ?>
 	<div class="header">
 		<div class="container">
@@ -33,10 +33,10 @@
 			endif;
 			?>
 			<div class="span7 search">
-			<?php 
+			<?php
 				add_filter( 'get_search_form', 'cwp_search_form_header' );
 				get_search_form();
-				remove_filter( 'get_search_form', 'cwp_search_form_header' ); 
+				remove_filter( 'get_search_form', 'cwp_search_form_header' );
 			?>
 			</div>
 		</div>

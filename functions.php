@@ -1,6 +1,4 @@
 <?php
-if ( ! isset( $content_width ) )
-	$content_width = 625;
 function cwp_wp_nav_menu_args( $args = '' ) {
 	$args['container'] = '';
 	$args['items_wrap'] = '%3$s';
@@ -8,11 +6,14 @@ function cwp_wp_nav_menu_args( $args = '' ) {
 }
 add_filter( 'wp_nav_menu_args', 'cwp_wp_nav_menu_args' );
 function cwp_setup() {
+	global $content_width;
+	if ( ! isset( $content_width ) )
+		$content_width = 625;
 	load_theme_textdomain( 'cwp', get_template_directory() . '/languages' );
-	
+
 	// Adds RSS feed links to <head> for posts and comments.
 	add_theme_support( 'automatic-feed-links' );
-	
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Primary Menu', 'cwp' ) );
 	register_nav_menu( 'footer', __( 'Footer Menu', 'cwp' ) );
@@ -26,14 +27,14 @@ function cwp_setup() {
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
-	
- 
+
+
 	add_image_size( 'fo-thumb', 459, 158, true );
 	add_image_size( 'fv-thumb', 180, 329, true );
 	add_image_size( 'big-thumb', 300, 176, true );
 	add_image_size( 'small-thumb', 134, 100, true );
-	
-	
+
+
 	$args = array(
 		'width'         => 960,
 		'height'        => 60,
@@ -53,22 +54,8 @@ add_action('admin_enqueue_scripts', 'cwp_do_media');
 */
 require get_template_directory() . '/inc/customizer.php';
 
-/**
- * Adds support for a custom header image.
- */ 
- 
-add_action( 'pre_get_posts', 'cwp_search_by_cat' );
-function cwp_search_by_cat()
-	{
-		if ( is_search())
-			{
-				$myCat = get_query_var('cat');
-				$cat = empty( $myCat ) ? '' : (int) $myCat;
-				add_query_arg( 'cat', $cat );
-			}
-	}
 
-	
+
 class cwp_Walker_Category_Checklist extends Walker {
 	var $tree_type = 'category';
 	var $db_fields = array ('parent' => 'parent', 'id' => 'term_id'); //TODO: decouple this
@@ -205,22 +192,21 @@ class cwp_Walker_Category_radio extends Walker {
 		$output .= "</li>\n";
 	}
 }
- 
- 
+
+
 function cwp_scripts_styles() {
 	global $wp_styles;
 	/*
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
 	 */
-	wp_enqueue_script('jquery');
-	
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
 	/*
 	 * Adds JavaScript for handling the navigation menu hide-and-show behavior.
 	 */
-	wp_enqueue_script( 'cwp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
+	wp_enqueue_script( 'cwp-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '1.0', true );
 	/*
 	 * Loads our special font CSS file.
 	 *
@@ -334,7 +320,7 @@ function cwp_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
-	
+
 	register_sidebar( array(
 		'name' => __( 'First footer widget area', 'cwp' ),
 		'id' => 'sidebar-first-footer',
@@ -344,7 +330,7 @@ function cwp_widgets_init() {
 		'before_title' => '<span>',
 		'after_title' => '</span>',
 	) );
-	
+
 }
 add_action( 'widgets_init', 'cwp_widgets_init' );
 /**
@@ -390,7 +376,7 @@ function cwp_comment( $comment, $args, $depth ) {
 		<article id="comment-<?php comment_ID(); ?>" class="media">
 				<div class='pull-left'>
 					<?php	echo get_avatar( $comment, 44 ); ?>
-				</div> 
+				</div>
 				<section class="media-body">
 				<h5 class="media-heading">
 				<?php
@@ -410,12 +396,12 @@ function cwp_comment( $comment, $args, $depth ) {
 			<?php if ( '0' == $comment->comment_approved ) : ?>
 				<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'cwp' ); ?></p>
 			<?php endif; ?>
-			
+
 				<?php comment_text(); ?>
 				<?php edit_comment_link( __( 'Edit', 'cwp' ), '<p class="edit-link">', '</p>' ); ?>
 			</section><!-- .comment-content -->
 			<div class="reply">
-				
+
 				<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'cwp' ), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => 10 ) ) ); ?>
 			</div><!-- .reply -->
 		</article><!-- #comment-## -->
@@ -463,8 +449,8 @@ function cwp_entry_meta() {
 	);
 }
 
-/* excerpt limit */ 
-add_filter( 'excerpt_length', 'cwp_excerpt_length', 999 ); 
+/* excerpt limit */
+add_filter( 'excerpt_length', 'cwp_excerpt_length', 999 );
 function cwp_excerpt_length( $length ) {
 	return 30;
 }
@@ -496,7 +482,7 @@ function cwp_search_form_header( $form ) {
 		if(get_theme_mod($categ->slug)):
 			array_push($cats, $categ);
 		endif;
-	endforeach;	
+	endforeach;
 
 	if(isset($_GET['cat'])) {
 		$catToSearch = $_GET['cat'];
@@ -510,14 +496,14 @@ function cwp_search_form_header( $form ) {
 	else {
 		$tmpc = "0";
 	}
-	
+
 	$form = '<form action="'.esc_url( home_url( '/' ) ).'" method="GET">';
 		$form .= '<div class="search-location">';
 			$form .= '<span>'.__('Search in:','cwp').'</span>';
 			$form .= '<input type="radio" name="cat" value="all" id="catall" '.checked( $tmpc, "1", false ).' />';
 			$form .= '<label for="catall">'.__('All Categories', 'cwp').'</label>';
-			
-			foreach($cats as $cat) { 
+
+			foreach($cats as $cat) {
 				$form .= '<input type="radio" id="s'.$cat->cat_ID.'" name="cat" value="'.$cat->cat_ID.'" '.checked( $catToSearch, $cat->cat_ID, false ).' />';
 				$form .= '<label for="s'.$cat->cat_ID.'">'.$cat->name.'</label>';
 			}

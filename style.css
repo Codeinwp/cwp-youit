@@ -1,16 +1,14 @@
 /*
 Theme Name: CWP-YouIT
-Theme URI: http://themeisle.com/themes/cwp-youit/
+Theme URI: https://themeisle.com/themes/cwp-youit/
 Author: codeinwp
-Author URI: http://www.codeinwp.com
-Description: CWP-YouIT is a wordpress theme created for gaming or IT news websites which wants a modern look.
-Version: 1.1.1
+Author URI: http://www.themeisle.com
+Description: YouIT is a free gaming wordpress theme created for gaming or IT news websites which wants a modern look.
+Version: 1.1.6
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: gray, black, one-column, two-columns, right-sidebar, fixed-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, threaded-comments, post-formats, sticky-post
+Tags: gray, black, one-column, two-columns, right-sidebar, fixed-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, threaded-comments, post-formats, sticky-post,translation-ready
 */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
 @font-face{
 	font-family: 'Nobile-Light';
 	src: url('fonts/Nobile-Regular.ttf');
@@ -30,13 +28,13 @@ body {
 }
 
 .entry-content {
-	
+
 	-ms-word-wrap: break-word;
 	word-wrap: break-word;
 	color: #3E485E;
 	font-size:10pt;
 
-	
+
 }
 
 h1 {
@@ -100,11 +98,11 @@ table td, table th {
 	color: #b8340e;
 }
 
-.entry-content ul, 
-.entry-content li, 
+.entry-content ul,
+.entry-content li,
 .entry-content ol,
 .entry-content dl,
-.entry-content dd { 
+.entry-content dd {
 	margin-left: 15px;
 }
 
@@ -126,7 +124,7 @@ table td, table th {
 	color: #3E485E;
 }
 .bypostauthor{
-	
+
 }
 .entry-meta a, .entry-meta a:hover, .entry-meta a:visited {
 	color:#000000;
@@ -298,7 +296,6 @@ body{
 
 .section-title h2.nodesc {
 	height: 41px;
-	line-height: 41px;
 	float: left;
 	padding-top: 0;
 }
@@ -345,7 +342,7 @@ header .more{
 	line-height:normal;
 }
 .three-columns {
-    
+
     float:left;
 }
 
@@ -453,11 +450,11 @@ header .more{
 .all-about input, .all-about select, .all-about textarea, .all-about img, .footer-wrapper input, .footer-wrapper select, .footer-wrapper textarea, .footer-wrapper img  {
 	max-width:100%;
 	height:auto;
-	
+
 }
 
 .all-about input, .all-about select, .all-about textarea {
-   width:90%; 
+   width:90%;
 }
 /*
 ==============================
@@ -480,7 +477,7 @@ header .more{
 	color: #f7f7f7;
 	font-family: 'Nobile-Light';
 	font-size: 18px;
-	text-align: center; 
+	text-align: center;
 }
 .footer-wrapper a{
 	color: #ffffff;
@@ -492,7 +489,7 @@ header .more{
 .footer-wrapper li{
 	color: #ffffff;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 12px; 
+	font-size: 12px;
 }
 .copyright-wrapper .links{
 	color: #ffffff;
@@ -592,7 +589,7 @@ img, input{
 	color: #fff;
 }
 .search-location{
-	margin: 0 0 3px 25px; 
+	margin: 0 0 3px 25px;
 }
 .search-location span{
 	padding-right: 10px;
@@ -734,7 +731,7 @@ input[type=submit] {
 }
 .navbar li a{
 	padding: 25px 17px;
-	text-decoration: none;	
+	text-decoration: none;
 	display: block;
 }
 .navbar li a span{
@@ -857,7 +854,7 @@ input[type=submit] {
 }
 
 .right-banner a:hover,
-.right-banner .img .color { 
+.right-banner .img .color {
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
 	filter: alpha(opacity=60);
 	opacity: 0.6;
@@ -1103,7 +1100,7 @@ header .more.nodesc{
 	border: 1px solid #d7d7d7;
 	border-radius: 3px;
 	background-color: #ffffff;
-	padding: 15px; 
+	padding: 15px;
 	margin-bottom: 20px;
 }
 .newsletter p{
@@ -1132,7 +1129,7 @@ header .more.nodesc{
 	padding-left: 10px;
 	padding-right: 10px;
 	color: #ffffff;
-	
+
 }
 .all-about a img{
 	float: left;
@@ -1141,8 +1138,8 @@ header .more.nodesc{
 	padding-right: 15px;
 }
 .all-about a{
-	
-	
+
+
 }
 .all-about li {
 	list-style:none;
@@ -1259,14 +1256,14 @@ footer{
 	width: 280px;
 	color:#ffffff;
 	margin: 0 50px 0 0;
-} 
+}
 .footer-wrapper div:nth-last-child(3n+1){
 	margin: 0 0 0 0;
 }
 .footer-wrapper span{
 	background: url('images/footer-title-underline.png') no-repeat bottom center;
 	display: block;
-	padding-bottom: 20px; 
+	padding-bottom: 20px;
 }
 .footer-wrapper ul{
 	list-style: none;
@@ -1276,7 +1273,7 @@ footer{
 }
 .footer-wrapper li{
 	background: url('images/footer-link-underline.png') no-repeat bottom left;
-	padding: 8px 0 12px 0; 
+	padding: 8px 0 12px 0;
 }
 .footer-wrapper li:last-child{
 	background: none;
