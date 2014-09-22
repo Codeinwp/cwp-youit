@@ -14,7 +14,25 @@ function cwp_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-
+	
+	/* theme notes */
+	$wp_customize->add_section( 'codeinwp_theme_notes' , array(
+		'title'      => __('ThemeIsle theme notes','codeinwp'),
+		'description' => sprintf( __( "Thank you for being part of this! We've spent almost 6 months building ThemeIsle without really knowing if anyone will ever use a theme or not, so we're very grateful that you've decided to work with us. Wanna <a href='http://themeisle.com/contact/' target='_blank'>say hi</a>?
+		<br/><br/><a href='http://themeisle.com/demo/?theme=CWP Youit' target='_blank' />View Theme Demo</a> | <a href='http://themeisle.com/forums/forum/cwp-youit' target='_blank'>Get theme support</a><br/><br/><a href='http://themeisle.com/documentation-cwp-youit' target='_blank'>Documentation</a>")),
+		'priority'   => 30,
+	));
+	$wp_customize->add_setting(
+        'cwp_theme_notice'
+	);
+	
+	$wp_customize->add_control(
+    'cwp_theme_notice',
+    array(
+        'section' => 'codeinwp_theme_notes',
+		'type'  => 'read-only',
+    ));
+	
 	/* Logo */
 	$wp_customize->add_section( 'cwp_logo_section' , array(
     	'title'       => __( 'Logo', 'cwp' ),
@@ -27,7 +45,7 @@ function cwp_customize_register( $wp_customize ) {
 	    'section'  => 'cwp_logo_section',
 	    'settings' => 'logo',
 	) ) );
-
+	
 	/* Footer logo */
 	$wp_customize->add_section( 'cwp_footer_logo_section' , array(
     	'title'       => __( 'Footer logo', 'cwp' ),
@@ -40,41 +58,57 @@ function cwp_customize_register( $wp_customize ) {
 	    'section'  => 'cwp_footer_logo_section',
 	    'settings' => 'footer_logo',
 	) ) );
-
+	
 	/* Top 5 text (right side of first page) */
 	$wp_customize->add_section( 'cwp_top5_section' , array(
     	'title'       => __( 'Top 5 section text', 'cwp' ),
     	'priority'    => 102,
 		'description' => __('Enter a text for the top 5 section in the right side','cwp')
 	) );
-	$wp_customize->add_setting( 'top_5_text', array('default' => 'Top 5 best <span>games</span>', 'sanitize_callback' => 'cwp_youit_top_5_text_sanitization') );
+	$wp_customize->add_setting( 'top_5_text', array('default' => 'Top 5 best <span>games</span>', 'sanitize_callback' => 'top_5_text_sanitization') );
 	$wp_customize->add_control( 'top_5_text', array(
 	    'label'    => __( 'Top 5 text', 'cwp' ),
 	    'section'  => 'cwp_top5_section',
 	    'settings' => 'top_5_text',
 		'priority'    => 1,
 	) );
-
+	
 	/* Search in cats (slugs) separated by commas */
-
-
+	$wp_customize->add_section( 'cwp_searchcat_section' , array(
+    	'title'       => __( 'Search in cats (slugs) separated by commas', 'cwp' ),
+    	'priority'    => 103,
+		'description' => __('Choose the categories to search','cwp')
+	) );
+	
 	$categories = get_categories();
-
-
-
+	$i = 1;
+	foreach($categories as $categ):
+		$wp_customize->add_setting($categ->slug, array(
+			'capability' => 'edit_theme_options', 'sanitize_callback' => 'searchcat_sanitization'
+		));
+		$wp_customize->add_control($categ->slug, array(
+			'settings' => $categ->slug,
+			'label'    => $categ->name,
+			'section'  => 'cwp_searchcat_section',
+			'type'     => 'checkbox',
+			'priority'    => $i
+		));
+		$i++;
+	endforeach;
+	
 	/* First Section slug */
 	$cat_slugs = array();
 	$categories = get_categories();
 	foreach($categories as $categ):
 		$cat_slugs[$categ->cat_ID] = $categ->slug;
 	endforeach;
-
+	
 	$wp_customize->add_section( 'cwp_field_cat_section' , array(
     	'title'       => __( 'First Section slug', 'cwp' ),
     	'priority'    => 104,
 		'description' => __('Choose category for the first section','cwp')
 	) );
-	$wp_customize->add_setting( 'cat1_slug', array('sanitize_callback' => 'cwp_youit_cat_slug_sanitization') );
+	$wp_customize->add_setting( 'cat1_slug', array('sanitize_callback' => 'cat_slug_sanitization') );
 	$wp_customize->add_control(
 		'cat1_slug',
 		array(
@@ -84,15 +118,15 @@ function cwp_customize_register( $wp_customize ) {
 			'choices' => $cat_slugs,
 		)
 	);
-
+	
 	/* Second Section slug */
-
+	
 	$wp_customize->add_section( 'cwp_field_cat2_section' , array(
     	'title'       => __( 'Second Section slug', 'cwp' ),
     	'priority'    => 105,
 		'description' => __('Choose category for the second section','cwp')
 	) );
-	$wp_customize->add_setting( 'cat2_slug', array('sanitize_callback' => 'cwp_youit_cat_slug_sanitization'));
+	$wp_customize->add_setting( 'cat2_slug', array('sanitize_callback' => 'cat_slug_sanitization'));
 	$wp_customize->add_control(
 		'cat2_slug',
 		array(
@@ -102,15 +136,15 @@ function cwp_customize_register( $wp_customize ) {
 			'choices' => $cat_slugs,
 		)
 	);
-
+	
 	/* Third Section slug */
-
+	
 	$wp_customize->add_section( 'cwp_field_cat3_section' , array(
     	'title'       => __( 'Third Section slug', 'cwp' ),
     	'priority'    => 106,
 		'description' => __('Choose category for the third section','cwp')
 	) );
-	$wp_customize->add_setting( 'cat3_slug', array('sanitize_callback' => 'cwp_youit_cat_slug_sanitization'));
+	$wp_customize->add_setting( 'cat3_slug', array('sanitize_callback' => 'cat_slug_sanitization'));
 	$wp_customize->add_control(
 		'cat3_slug',
 		array(
@@ -120,15 +154,15 @@ function cwp_customize_register( $wp_customize ) {
 			'choices' => $cat_slugs,
 		)
 	);
-
+	
 }
 add_action( 'customize_register', 'cwp_customize_register' );
 
-function cwp_youit_top_5_text_sanitization( $input ) {
+function top_5_text_sanitization( $input ) {
     return wp_kses_post( force_balance_tags( $input ) );
 }
 
-function cwp_youit_searchcat_sanitization( $input ) {
+function searchcat_sanitization( $input ) {
     if ( $input == 1 ) {
         return 1;
     } else {
@@ -136,13 +170,13 @@ function cwp_youit_searchcat_sanitization( $input ) {
     }
 }
 
-function cwp_youit_cat_slug_sanitization( $input ) {
+function cat_slug_sanitization( $input ) {
     $cat_slugs = array();
 	$categories = get_categories();
 	foreach($categories as $categ):
 		$cat_slugs[$categ->cat_ID] = $categ->slug;
 	endforeach;
-
+	
     if ( array_key_exists( $input, $cat_slugs ) ) {
         return $input;
     } else {
