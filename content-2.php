@@ -1,8 +1,22 @@
 <article>
-    <?php the_post_thumbnail('big-thumb'); ?>
+    <?php 
+		if ( has_post_thumbnail() ):
+		?>
+			<a href="<?php the_permalink(); ?>" class="thumbnail-wrap" title="<?php the_title(); ?>">
+				<?php the_post_thumbnail('big-thumb'); ?>
+			</a>	
+		<?php else: ?>
+			<a href="<?php the_permalink(); ?>" class="thumbnail-wrap">
+				<img src="<?php echo bloginfo('template_directory'); ?>/images/no-image-default.png" class="attachment-big-thumb wp-post-image"?>
+			</a>
+		<?php
+			endif;
+	    ?>
     <header>
         <h3><?php the_title(); ?></h3>
     </header>
     <p><?php the_excerpt(); ?></p>
-    <a href="<?php the_permalink(); ?>" title="<?php the_permalink(); ?>"><?php _e('Read more','cwp')?></a>
+    <div class="readmore-wrap">
+	    <a href="<?php the_permalink(); ?>" title="<?php the_permalink(); ?>" class="readmore"><?php _e('Read more','cwp')?></a>
+	</div>
  </article>

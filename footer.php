@@ -2,6 +2,7 @@
    </div>
     <div class="clear"></div>
   <footer>
+    <div class="container">
     <div class="mobile">
       <div class="mobile-wrapper">
          
@@ -35,6 +36,7 @@
         </div>
       </div>
     </div>
+  </div><!-- .container -->
   </footer>
 <?php wp_footer(); ?>
 </body>
