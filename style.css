@@ -1399,13 +1399,13 @@ footer{
 	width: 940px;
 	overflow: hidden;
 }
-.footer-wrapper div{
+.footer-wrapper .container div{
 	float: left;
 	width: 280px;
 	color:#ffffff;
 	margin: 0 50px 0 0;
 }
-.footer-wrapper div:nth-last-child(3n+1){
+.footer-wrapper .container div:nth-last-child(3n+1){
 	margin: 0 0 0 0;
 }
 .footer-wrapper span{
