@@ -15,6 +15,8 @@ jQuery( window ).resize(function() {
 /* Sets the same height */
 function sameHeightSmallPost(){
 
+	jQuery( '.small-post-area' ).height( 'auto' );
+
 	/* small box area fix height */
 	var maxHeight = 0;
 	jQuery( '.small-post-area' ).each( function(){

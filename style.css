@@ -189,45 +189,6 @@ body{
 */
 
 /*
-.navbar ul{
-	letter-spacing: -4px;
-}
-.navbar li{
-	letter-spacing: normal;
-	height: 73px;
-}
-.navbar li a{
-	color: #ffffff;
-	font-size: 14px;
-	font-weight: 700;
-	text-shadow: 0 -1px #111111;
-}
-.navbar li a span{
-	color: #aeaeae;
-	font-size: 11px;
-	line-height: 13px;
-	font-weight: 400;
-	text-shadow: none;
-}
-.navbar ul ul li a{
-	color: #ffffff;
-	text-shadow: 0 1px #000000;
-	font-size: 12px;
-	font-weight: 400;
-}
-.navbar ul ul li a:hover{
-	text-decoration: underline;
-}
-.navbar ul ul li span{
-	color: #ef7716;
-	text-shadow: 0 1px #000000;
-}
-*/
-
-
-
-
-/*
 ==============================
 	1.3 Top content
 ==============================
@@ -415,6 +376,54 @@ header .more{
 	font-weight: 700;
 	text-decoration: none;
 }
+.half-page{
+    width: 45%;
+    padding-right: 5%;
+    float: left;
+}
+.contact-form-page{
+ 
+}
+.contact-form-page ul{
+    margin: 0;
+}
+.contact-form-page li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.contact-form-page label{
+    display: block;
+}
+.contact-form-page input{
+    width: 94%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+textarea{
+    background: url('images/default-input_03.png') repeat-x top;
+    height: 150px;
+    border: 1px solid #d7d7d7;
+    padding-top: 5px;
+    margin-bottom: 5px;
+    width: 94%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.contact-form-page input[type="submit"]{
+    width: 100%;
+    cursor: pointer;
+}
+.contact-form-page span{
+    color: #ba350e;
+    margin-bottom: 10px;
+    float: left;
+    width: 100%;
+}
+.search input[type="text"]{
+    width: 100%;
+}
+
 /*
 ==============================
 	1.5 Sidebar
@@ -605,6 +614,7 @@ img, input{
 */
 .header{
 	background: url('images/header-background.png') repeat-x #323031;
+	background-size: auto 100%;
 }
 /*
 ==============================
@@ -676,11 +686,19 @@ img, input{
 	margin-right: -20px;
 }
 input[type=text] {
-	background: url('images/default-input_03.png');
-	height: 29px;
-	border:1px solid #d7d7d7;
-	padding-left:10px;
-	margin-bottom: 5px;
+    background: url('images/default-input_03.png');
+    height: 29px;
+    border:1px solid #d7d7d7;
+    padding-left:10px;
+    margin-bottom: 5px;
+    width: 94%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.comments-area{
+    word-wrap: break-word;
+    color: #3E485E;
+    font-size: 10pt;
 }
 #secondary #searchsubmit {
 	width:100%;
@@ -1198,6 +1216,7 @@ header .more.nodesc{
 #calendar_wrap{
 	float: left;
 	margin-bottom: 50px;
+	width: 100%;
 }
 #calendar_wrap caption{
 	color: #FFF;
@@ -1399,14 +1418,12 @@ footer{
 	width: 940px;
 	overflow: hidden;
 }
-.footer-wrapper .container div{
-	float: left;
-	width: 280px;
-	color:#ffffff;
-	margin: 0 50px 0 0;
-}
-.footer-wrapper .container div:nth-last-child(3n+1){
-	margin: 0 0 0 0;
+.footer-wrapper .container > div{
+    float: left;
+    width: 30%;
+    margin-right: 3%;
+    color:#ffffff;
+ 
 }
 .footer-wrapper span{
 	background: url('images/footer-title-underline.png') no-repeat bottom center;
@@ -1653,6 +1670,9 @@ img.wp-smiley,
 	.container{
 		width: 748px;
 	}
+    table td, table th {
+        padding: 6px;
+    }
 
 	/* header */
 	.main-navigation > ul > li > a {
@@ -1754,17 +1774,12 @@ img.wp-smiley,
 	.copyright-wrapper {
 		width: 728px;
 	}
-	.footer-wrapper div {
+	.footer-wrapper .container > div {
 		width: 45%;
 		margin-right: 5%;
 	}
 	.mobile-wrapper {
 		width: 100%;
-	}
-	.footer-wrapper div {
-		width: 100%;
-		margin-right: 0;
-		margin-bottom: 50px;
 	}
 	.footer-wrapper {
 		width: 100%;
@@ -1772,10 +1787,9 @@ img.wp-smiley,
 	.links {
 		display: none;
 	}
-	.footer-wrapper div {
-		width: 45%;
-		margin-right: 5%;
-	}
+    .footer-wrapper .container > div {
+        width: 45%;
+    }
 
 }
 
@@ -1784,6 +1798,9 @@ img.wp-smiley,
 	.container{
 		width: 460px;
 	}
+    table td, table th {
+        padding: 8px;
+    }
 
 	/* header */
 	.menu-toggle,
@@ -1813,13 +1830,17 @@ img.wp-smiley,
 	.main-navigation ul {
 		display: none;
 	}
+	.main-navigation ul ul{
+		margin-bottom: 0;
+	}
 	.main-navigation ul ul li{
-		width: 100%;
+		width: 80%;
+		padding-left: 10%;
 	}
-	.main-navigation ul ul a {
-		width: 90%;
-		padding: 10px 5% 0;
-	}
+    .main-navigation ul ul ul li{
+        width: 80%;
+        padding: 0px 10% 0;
+    }
 	.main-navigation ul ul{
 		display: block;
 		position: relative;
@@ -1828,6 +1849,9 @@ img.wp-smiley,
 		top: 0;
 		padding-bottom: 10px;
 	}
+    .main-navigation ul ul a {
+        width: 100%;
+    }
 	.header .logo{
 		width: 100%;
 		text-align: center;
@@ -1853,7 +1877,14 @@ img.wp-smiley,
 		width: 100%;
 		margin-left: 0;
 	}
-
+    .main-navigation ul ul{
+        background: none;
+        box-shadow: none;
+        padding-bottom: 0;
+    }
+    .main-navigation ul ul ul {
+        left: 0;
+    }
 
 	/* homepage */
 	.content-area {
@@ -1899,27 +1930,40 @@ img.wp-smiley,
 	#secondary #s {
 		width: 97%;
 	}
-	.three-columns article {
-		width: 134px;
-		padding: 5px;
-		margin-bottom: 20px;
-	}
-
-
-	/* footer */
-	.footer-wrapper div{
-		width: 100%;
-		margin-right: 0;
-	}
+    .three-columns article {
+        width: 134px;
+        padding: 10px 5px;
+        margin-bottom: 20px;
+    }
+ 
+ 
+    /* footer */
+    .footer-wrapper > div{
+        width: 480px;
+        margin: 0 auto;
+    }
+    .footer-wrapper .container div {
+        float: left;
+        width: 100%;
+    }
+ 
+    /* contact page */
+    .half-page{
+        width: 100%;
+        margin-bottom: 40px;
+    }
 
 
 }
 
 @media screen and (max-width: 479px) {
 
-	.container{
-		width: 96%;
-	}
+    .container{
+        width: 91%;
+    }
+    .footer-wrapper > div{
+        width: 91%; 
+    }
 
 	/* frontpage */
 	.search-box input[type=text] {
@@ -1956,14 +2000,5 @@ img.wp-smiley,
 
 
 }
-/*
-.container.site-main{
-	display: none;
-}
-*/
-/*
-footer{
-	display: none;
-}
-*/
+
 
