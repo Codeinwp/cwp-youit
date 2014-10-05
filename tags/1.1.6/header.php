@@ -32,44 +32,27 @@
 				echo '</div>';
 			endif;
 			?>
-			<div class="search-header">
+			<div class="span7 search">
 			<?php
 				add_filter( 'get_search_form', 'cwp_search_form_header' );
 				get_search_form();
 				remove_filter( 'get_search_form', 'cwp_search_form_header' );
 			?>
 			</div>
-			<div class="clearfix"></div>
-		</div> <!-- .container -->
-		<div class="clearfix"></div>
-	</div><!-- .header -->
-
+		</div>
+	</div>
   <div class="navigation navigation-top">
     <div class="container">
-
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<h1 class="menu-toggle"><?php _e( 'Menu', 'cwp' ); ?></h1>
-
-          	<ul class="nav">
-           		<li class="homebtn">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-						<img src="<?php echo  get_template_directory_uri(); ?>/images/nav-home.png" alt=""/>
-					</a>
-				</li>
-				<?php wp_nav_menu( array( 
-									'container'			=>	false, 
-									'theme_location' 	=> 'primary', 
-									'walker'			=> new cwp_Walker_Nav_menu(), 
-									'fallback_cb'		=> false,  
-									'menu_class' 		=> '', 
-									'depth'				=> 2,  
-									'items_wrap' 		=> '%3$s'
-								) ); ?>
-          	</ul>
-          	<div class="clearfix"></div>
-		</nav><!-- #site-navigation -->
-
-		<div class="clearfix"></div>
+        <nav class="navbar">
+          <ul class="nav">
+            <li>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
+					<img src="<?php echo  get_template_directory_uri(); ?>/images/nav-home.png" alt=""/>
+				</a>
+			</li>
+			<?php wp_nav_menu( array( 'container'	=>	false, 'theme_location' => 'primary', 'walker'=> new cwp_Walker_Nav_menu(), 'fallback_cb'=> false,  'menu_class' => '', 'depth'=> 2,  'items_wrap' => '%3$s') ); ?>
+          </ul>
+        </nav>
     </div>
   </div>
     <div id="main" class="container site-main">

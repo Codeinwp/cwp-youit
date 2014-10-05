@@ -15,11 +15,11 @@ if ( get_option( 'show_on_front' ) == 'page' ){?>
     <div class="banners">
 		<?php
 			$args = array(
-				'post_type' 			=> 'post',
-				'post_status' 			=> 'publish',
-				'posts_per_page' 		=> 3,
-//				'meta_query' 			=> array( array('key' => '_thumbnail_id')),
-				'ignore_sticky_posts'	=> 1
+				'post_type' => 'post',
+				'post_status' => 'publish',
+				'posts_per_page' => 3,
+				'meta_query' => array( array('key' => '_thumbnail_id')),
+				'ignore_sticky_posts'=> 1
 			);
 			$my_query = null;
 			$i = 1;
@@ -30,25 +30,21 @@ if ( get_option( 'show_on_front' ) == 'page' ){?>
 						if($i == 1) {
 							$cwp_youit_feat_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
 							echo '<div class="left-banners">';
+								if(isset($cwp_youit_feat_image[0])):
 								echo '<div class="top-banner">';
-								if(isset($cwp_youit_feat_image[0])):	
 									echo '<div class="img" style="background-image: url('.$cwp_youit_feat_image[0].');"></div>';
-								else:
-									echo '<div class="img no-thumbnail"></div>';
-								endif;
 									echo '<a href="'.get_permalink().'" title="'.get_permalink().'"><span>'.get_the_title().'</span></a>';
 								echo '</div>';
+								endif;
 						}
 						elseif($i == 2) {
 							$cwp_youit_feat_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
-							echo '<div class="bottom-banner">';
 							if(isset($cwp_youit_feat_image[0])):
+							echo '<div class="bottom-banner">';
 								echo '<div class="img" style="background-image: url('.$cwp_youit_feat_image[0].');"></div>';
-							else:
-								echo '<div class="img no-thumbnail"></div>';
-							endif;
 								echo '<a href="'.get_permalink().'" title=""><span>'.get_the_title().'</span></a>';
 							echo '</div>';
+							endif;
 						}
 					}
 					if(($i == 2) || (intval($cwp_youit_query->found_posts) == 1)) {
@@ -56,16 +52,14 @@ if ( get_option( 'show_on_front' ) == 'page' ){?>
 					}
 					if($i == 3) {
 						$cwp_youit_feat_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
+						if(isset($cwp_youit_feat_image[0])):
 							echo '<div class="right-banner right">';
-							if(isset($cwp_youit_feat_image[0])):
 								echo '<div class="img" style="background-image: url('.$cwp_youit_feat_image[0].');">';
-							else:
-								echo '<div class="img no-thumbnail">';
-							endif;
 									echo '<div class="color"></div>';
 								echo '</div>';
 								echo '<a href="'.get_permalink().'" title="'.get_permalink().'">'.get_the_title().'</a>';
 							echo '</div>';
+						endif;
 					}
 				$i++;
 				endwhile;
@@ -82,12 +76,12 @@ if ( get_option( 'show_on_front' ) == 'page' ){?>
         <ul>
 		<?php
 			$args = array(
-				'orderby'				=> 'comment_count',
-				'order'					=> 'DESC',
-				'post_type' 			=> 'post',
-				'post_status' 			=> 'publish',
-				'posts_per_page' 		=> 5,
-				'ignore_sticky_posts'	=> 1
+				'orderby'=>'comment_count',
+				'order'=>'DESC',
+				'post_type' => 'post',
+				'post_status' => 'publish',
+				'posts_per_page' => 5,
+				'ignore_sticky_posts'=> 1
 			);
 			$cwp_youit_query = null;
 			$i=1;
@@ -101,7 +95,7 @@ if ( get_option( 'show_on_front' ) == 'page' ){?>
 			wp_reset_postdata();
 		?>
 		</ul>
-        <div class="top-cwp_youit_categories top-categories">
+        <div class="top-cwp_youit_categories">
 			<ul>
 				<?php wp_list_categories('title_li=&orderby=count&order=DESC&number=3'); ?>
 			</ul>
