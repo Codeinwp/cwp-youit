@@ -21,3 +21,10 @@ The exceptions to this license are as follows:
 
 
 CWP-YouIT supports a level of two for the menus.
+Images from screenshot are taken from unsplash.com: 
+
+https://unsplash.imgix.net/19/desktop.JPG?q=75&fm=jpg&auto=format&s=66b82c81cfed8cf57ded7b935e98e000
+
+https://unsplash.imgix.net/26/camera-keys.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=7f1f374778c4bb82057bdae83cefe3f6
+
+https://unsplash.imgix.net/38/awhCbhLqRceCdjcPQUnn_IMG_0249.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=73aab3431ca0110acfb5b980b251c71f
