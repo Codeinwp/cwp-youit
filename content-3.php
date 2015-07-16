@@ -7,7 +7,7 @@
 			</a>	
 		<?php else: ?>
 			<a href="<?php the_permalink(); ?>" class="small-thumb-wrap">
-				<img src="<?php echo bloginfo('template_directory'); ?>/images/no-image-default-small.png" class="attachment-big-thumb wp-post-image"?>
+				<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/images/no-image-default-small.png" class="attachment-big-thumb wp-post-image"?>
 			</a>
 		<?php
 			endif;

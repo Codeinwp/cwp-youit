@@ -556,8 +556,8 @@ add_action( 'init', 'cwp_add_editor_styles' );
  */
 
 require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
-add_action( 'tgmpa_register', 'cwp_megar_required_plugins' );
-function cwp_megar_required_plugins() {
+add_action( 'tgmpa_register', 'cwp_youit_required_plugins' );
+function cwp_youit_required_plugins() {
 
 	/**
 	 * Array of plugin arrays. Required keys are name and slug.
@@ -569,6 +569,12 @@ function cwp_megar_required_plugins() {
 		array(
 			'name' 		=> 'WP Product Review',
 			'slug' 		=> 'wp-product-review',
+			'required' 	=> false,
+		),
+		
+		array(
+			'name' 		=> 'Revive Old Post',
+			'slug' 		=> 'tweet-old-post',
 			'required' 	=> false,
 		),
 	

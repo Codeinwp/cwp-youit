@@ -21,7 +21,7 @@ function cwp_customize_register( $wp_customize ) {
     	'priority'    => 100,
     	'description' => __('Upload an image for the logo','cwp'),
 	) );
-	$wp_customize->add_setting( 'logo');
+	$wp_customize->add_setting( 'logo', array('sanitize_callback' => 'esc_url_raw'));
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'themeslug_logo', array(
 	    'label'    => __( 'Logo', 'cwp' ),
 	    'section'  => 'cwp_logo_section',
@@ -34,7 +34,7 @@ function cwp_customize_register( $wp_customize ) {
     	'priority'    => 101,
     	'description' => __('Upload an image for the footer logo','cwp')
 	) );
-	$wp_customize->add_setting( 'footer_logo' );
+	$wp_customize->add_setting( 'footer_logo', array('sanitize_callback' => 'esc_url_raw'));
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'themeslug_logo_footer', array(
 	    'label'    => __( 'Footer logo', 'cwp' ),
 	    'section'  => 'cwp_footer_logo_section',
