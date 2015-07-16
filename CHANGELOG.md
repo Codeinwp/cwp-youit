@@ -1,5 +1,21 @@
 
 
+### 1.2.2 - 16/07/2015
+
+ Changes: 
+
+
+ * Update style.css
+ * Update class-tgm-plugin-activation.php
+ * Update content-2.php
+ * Update content-3.php
+ * Update class-tgm-plugin-activation.php
+ * Update customizer.php
+ * removed tgm
+ * Update style.css
+ * Update class-tgm-plugin-activation to latest version
+
+
 ### 1.1.9 - 17/10/2014
 
  Changes: 
